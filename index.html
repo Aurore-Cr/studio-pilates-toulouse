@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil</title>
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/js/style.js">
   <link rel="shortcut icon" href="assets/img/logo-pilates.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -25,9 +26,43 @@
     <p>Remise en forme, bien-être, souplesse et esprit zen ! Découvrez nos séances et réservez votre place dès aujourd'hui.</p>
   </section>
   
+  <!-- ajout d'image de coach avec description-->
+
   <section id="equipe">
     <h2>Présentation de l'équipe</h2>
-    <p>Formée au Pilates depuis 2015, je propose des cours accessibles et conviviaux pour tous niveaux. Mon objectif : votre bien-être.</p>
+    <div class="carousel">
+    <button class="carousel-btn prev">&#8592;</button>
+      <div class="carousel-track-container">
+        <ul class="carousel-track">
+          <li class="carousel-slide active">
+            <img src="./assets/img/homme-posant-a-l-arene-d-escalade-a-l-interieur.jpg" alt="coach-1">
+            <div class="coach-info">
+              <h3>Coach Diego</h3>
+              <h4>Spécialisée en Pilates & Fitness</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, quasi ducimus. In fugiat voluptatibus libero earum dolor vero at veritatis exercitationem quas velit, quaerat iste architecto soluta iusto assumenda itaque?</p>
+            </div>
+          </li>
+          <li class="carousel-slide">
+            <img src="./assets/img/jeune-adulte-faisant-du-sport-en-salle-a-la-salle-de-sport.jpg" alt="coach-2">
+            <div class="coach-info">
+              <h3>Coach Paul</h3>
+              <h4>Cardio, renfo & cours collectifs</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo quia excepturi nesciunt. Odio, eligendi nobis! Quo laboriosam eaque dolorem, eum velit eius facilis accusamus eligendi at, dicta incidunt nesciunt qui.</p>
+            </div>
+          </li>
+          <li class="carousel-slide">
+            <img src="./assets/img/vue-laterale-de-l-homme-souriant-au-gymnase.jpg" alt="coach-3">
+            <div class="coach-info">
+              <h3>Coach Gaétan</h3>
+              <h4>Yoga & Pilates</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo laboriosam consectetur porro illo perferendis dolores, doloremque eveniet a asperiores ab at suscipit soluta consequuntur voluptatum voluptatibus iusto, pariatur ut ea?</p>
+            </div>
+          </li>
+          <!-- Rajoute d’autres slides selon besoin -->
+        </ul>
+      </div>
+      <button class="carousel-btn next">&#8594;</button>
+    </div>
   </section>
 
     <section id="contact">
@@ -44,5 +79,34 @@
   <footer>
     <p>© 2025 Pilates by Enzo - Tous droits réservés</p>
   </footer>
+  <script>
+      const track = document.querySelector('.carousel-track');
+  const slides = Array.from(track.children);
+  const nextButton = document.querySelector('.carousel-btn.next');
+  const prevButton = document.querySelector('.carousel-btn.prev');
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    track.style.transform = 'translateX(-' + (slideWidth * currentIndex) + 'px)';
+    // optionnel : gérer l’état actif visuel
+    slides.forEach((slide, idx) =>
+      slide.classList.toggle('active', idx === currentIndex)
+    );
+  }
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+  updateCarousel();
+
+  </script>
 </body>
 </html>
