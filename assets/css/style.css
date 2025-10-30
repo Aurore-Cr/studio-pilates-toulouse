@@ -37,15 +37,13 @@ section {
 
 /* dimension des images */
 
-section .img{
-  max-width: 80%;
-  padding: 10px;
-}
-
 img{
     height: 200px;
     width: 350px;
     object-fit: cover;
+    max-width: 80%;
+    padding: 10px;
+    align-items: center;
 
 }
 
